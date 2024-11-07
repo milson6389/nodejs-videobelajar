@@ -5,7 +5,17 @@ export const removeAllUser = async () => {
   return await prismaClient.user.deleteMany({
     where: {
       userId: {
-        gte: 1,
+        gte: 0,
+      },
+    },
+  });
+};
+
+export const removeAllTutor = async () => {
+  return await prismaClient.tutor.deleteMany({
+    where: {
+      tutorId: {
+        gte: 0,
       },
     },
   });
@@ -18,6 +28,16 @@ export const createTestUser = async () => {
       email: "user1@localhost.local",
       noHp: "+658987654321",
       password: await authHandler.encryptPassword("password"),
+    },
+  });
+};
+
+export const createTestTutor = async () => {
+  const tempUser = await createTestUser();
+  return await prismaClient.tutor.create({
+    data: {
+      tutorTitle: "Jr. Mobile Dev",
+      userId: tempUser.userId,
     },
   });
 };

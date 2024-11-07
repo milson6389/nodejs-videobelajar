@@ -1,12 +1,12 @@
 import { z } from "zod";
 
 const registerTutorValidation = z.object({
-  tutorTitle: z.string().min(1).max(150),
+  tutorTitle: z.string().min(2).max(150),
   tutorDesc: z.string().optional(),
 });
 
 const updateTutorValidation = z.object({
-  tutorTitle: z.string().min(1).max(150).optional(),
+  tutorTitle: z.string().min(2).max(150).optional(),
   tutorDesc: z.string().optional(),
 });
 

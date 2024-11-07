@@ -5,7 +5,7 @@ import { prismaClient } from "../app/database.js";
 dotenv.config();
 
 export const authMiddleware = async (req, res, next) => {
-  let token = req?.cookies?.jwt;
+  let token = req.cookies.jwt;
   if (!token) {
     res
       .status(401)

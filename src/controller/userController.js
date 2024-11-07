@@ -12,6 +12,10 @@ const registerUser = async (req, res, next) => {
     generateToken(res, result.userId);
     res.status(201).json(result);
   } catch (error) {
+    res.cookie("jwt", "", {
+      httpOnly: true,
+      expires: new Date(0),
+    });
     next(error);
   }
 };
@@ -39,6 +43,10 @@ const userLogin = async (req, res, next) => {
     generateToken(res, result.userId);
     res.status(200).json(result);
   } catch (error) {
+    res.cookie("jwt", "", {
+      httpOnly: true,
+      expires: new Date(0),
+    });
     next(error);
   }
 };

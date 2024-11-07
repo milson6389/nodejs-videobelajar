@@ -6,6 +6,7 @@ import { corsOptions } from "../config/corsOptions.js";
 import { errorMiddleware } from "../middleware/errorMiddleware.js";
 import { logger } from "../middleware/logger.js";
 import { userRouter } from "../routes/userApi.js";
+import { tutorRouter } from "../routes/tutorApi.js";
 
 dotenv.config();
 export const web = express();
@@ -18,4 +19,5 @@ web.get("/", (req, res) => {
   res.send("OK!");
 });
 web.use(userRouter);
+web.use(tutorRouter);
 web.use(errorMiddleware);

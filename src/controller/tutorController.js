@@ -1,10 +1,5 @@
 import tutorService from "../service/tutorService.js";
 
-BigInt.prototype.toJSON = function () {
-  const int = Number.parseInt(this.toString());
-  return int ?? this.toString();
-};
-
 const registerTutor = async (req, res, next) => {
   try {
     const result = await tutorService.register(req);

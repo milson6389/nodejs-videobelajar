@@ -57,7 +57,7 @@ describe("GET /api/v1/tutor", () => {
   });
 
   it("should be able to get tutor list", async () => {
-    const result = await supertest(web).get(`/api/v1/tutor`);
+    const result = await supertest(web).get(`/api/v1/tutor?q=Mobile`);
     expect(result.status).toBe(200);
   });
 });

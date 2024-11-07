@@ -45,8 +45,8 @@ describe("GET /api/v1/category", () => {
     const result = await supertest(web).get(`/api/v1/category`);
     expect(result.status).toBe(200);
     expect(result.body[0].productCategoryId).toBeDefined();
-    expect(result.body[0].categoryCode).toBe("test");
-    expect(result.body[0].categoryDesc).toBe("test category");
+    expect(result.body[0].categoryCode).toBe("TEST");
+    expect(result.body[0].categoryDesc).toBe("Test Category");
   });
 });
 

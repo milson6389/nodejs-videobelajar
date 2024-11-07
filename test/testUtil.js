@@ -31,6 +31,16 @@ export const removeAllCategory = async () => {
   });
 };
 
+export const removeAllProduct = async () => {
+  return await prismaClient.product.deleteMany({
+    where: {
+      productId: {
+        gte: 0,
+      },
+    },
+  });
+};
+
 export const createTestUser = async () => {
   return await prismaClient.user.create({
     data: {
@@ -52,8 +62,25 @@ export const createTestTutor = async () => {
   });
 };
 
+export const createOtherTestTutor = async () => {
+  const otherUser = await prismaClient.user.create({
+    data: {
+      fullName: "user four",
+      email: "user4@localhost.local",
+      noHp: "+658987654444",
+      password: await authHandler.encryptPassword("password"),
+    },
+  });
+  return await prismaClient.tutor.create({
+    data: {
+      tutorTitle: "Jr. Mobile Dev",
+      userId: otherUser.userId,
+    },
+  });
+};
+
 export const createManyTestUser = async () => {
-  for (let i = 0; i < 5; i++) {
+  for (let i = 3; i < 8; i++) {
     await prismaClient.user.create({
       data: {
         fullName: `user ${i}`,
@@ -68,8 +95,21 @@ export const createManyTestUser = async () => {
 export const createTestCategory = async () => {
   return await prismaClient.productCategory.create({
     data: {
-      categoryCode: "test",
-      categoryDesc: "test category",
+      categoryCode: "TEST",
+      categoryDesc: "Test Category",
+    },
+  });
+};
+
+export const createTestProduct = async () => {
+  const tempTutor = await createTestTutor();
+  const tempCategory = await createTestCategory();
+  return await prismaClient.product.create({
+    data: {
+      productTitle: "TEST PRODUCT",
+      productPrice: 88888,
+      categoryCode: tempCategory.categoryCode,
+      tutorId: Number(tempTutor.tutorId),
     },
   });
 };

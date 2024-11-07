@@ -21,6 +21,16 @@ export const removeAllTutor = async () => {
   });
 };
 
+export const removeAllCategory = async () => {
+  return await prismaClient.productCategory.deleteMany({
+    where: {
+      productCategoryId: {
+        gte: 0,
+      },
+    },
+  });
+};
+
 export const createTestUser = async () => {
   return await prismaClient.user.create({
     data: {
@@ -53,4 +63,13 @@ export const createManyTestUser = async () => {
       },
     });
   }
+};
+
+export const createTestCategory = async () => {
+  return await prismaClient.productCategory.create({
+    data: {
+      categoryCode: "test",
+      categoryDesc: "test category",
+    },
+  });
 };

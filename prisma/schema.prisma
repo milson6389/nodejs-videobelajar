@@ -57,6 +57,7 @@ model Product{
   productSummary String? @db.VarChar(100)
   productDesc String? @db.LongText
   productPrice Float @db.Double
+  productThumbnail String? @db.LongText
   tutorId BigInt
   categoryCode String @db.VarChar(10)
   createdAt  DateTime   @default(now())

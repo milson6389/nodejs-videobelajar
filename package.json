@@ -12,5 +12,8 @@
   "devDependencies": {
     "dotenv": "^16.4.5",
     "nodemon": "^3.1.7"
+  },
+  "dependencies": {
+    "express": "^4.21.1"
   }
 }
